@@ -1,67 +1,79 @@
-[lad messenger wasche online wasche.html](https://github.com/user-attachments/files/21922623/lad.messenger.wasche.online.wasche.html)
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a2a6c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>🔒 Секретный Чат с Режимом Рации</title>
     <script src="https://unpkg.com/peerjs@1.5.0/dist/peerjs.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 600px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: #333;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
         
         .container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
+            padding-bottom: 20px;
         }
         
         h2 {
             text-align: center;
             color: white;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
+            margin: 10px 0;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
         
         #chat-box {
-            height: 250px;
+            height: 35vh;
+            min-height: 200px;
+            max-height: 300px;
             overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 15px 0;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            margin: 12px 0;
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
+            -webkit-overflow-scrolling: touch;
         }
         
         .message {
-            padding: 10px 15px;
+            padding: 10px 14px;
             border-radius: 18px;
             max-width: 85%;
             word-break: break-word;
             animation: fadeIn 0.3s ease;
+            font-size: 15px;
+            line-height: 1.4;
         }
         
         @keyframes fadeIn {
@@ -73,32 +85,38 @@
             background: #dcf8c6;
             margin-left: auto;
             border-bottom-right-radius: 5px;
+            margin-right: 5px;
         }
         
         .their-message {
             background: #e6f3ff;
             border-bottom-left-radius: 5px;
+            margin-left: 5px;
         }
         
         .system-message {
             background: #fff9e6;
             text-align: center;
             font-style: italic;
-            border-radius: 8px;
+            border-radius: 10px;
             margin: 5px 0;
+            font-size: 14px;
+            color: #666;
         }
         
         input, button, select {
-            padding: 12px 15px;
-            margin: 5px 0;
+            padding: 14px 16px;
+            margin: 4px 0;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 16px;
+            min-height: 50px;
         }
         
         input, select {
             width: 100%;
             background: #f9f9f9;
+            -webkit-appearance: none;
         }
         
         input:focus, select:focus {
@@ -112,20 +130,18 @@
             color: white;
             border: none;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-        }
-        
-        button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
+            gap: 6px;
+            min-width: 60px;
+            touch-action: manipulation;
         }
         
         button:active {
-            transform: translateY(0);
+            transform: scale(0.98);
+            opacity: 0.9;
         }
         
         button.secondary {
@@ -149,20 +165,23 @@
             background: #ccc;
             cursor: not-allowed;
             transform: none;
+            opacity: 0.7;
         }
         
         .flex {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         #connection-status, #call-status, #walkie-status {
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: center;
-            margin: 12px 0;
-            font-weight: bold;
+            margin: 10px 0;
+            font-weight: 600;
+            font-size: 14px;
         }
         
         .connected {
@@ -206,7 +225,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .tooltip {
@@ -217,19 +236,20 @@
         
         .tooltip .tooltiptext {
             visibility: hidden;
-            width: 200px;
+            width: 180px;
             background-color: #555;
             color: #fff;
             text-align: center;
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 8px;
             position: absolute;
-            z-index: 1;
+            z-index: 100;
             bottom: 125%;
             left: 50%;
-            margin-left: -100px;
+            transform: translateX(-50%);
             opacity: 0;
             transition: opacity 0.3s;
+            font-size: 13px;
         }
         
         .tooltip:hover .tooltiptext {
@@ -241,19 +261,22 @@
             position: fixed;
             top: 20px;
             right: 20px;
+            left: 20px;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 12px;
             background: #4CAF50;
             color: white;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transform: translateX(100%);
+            transform: translateY(-100px);
             opacity: 0;
             transition: all 0.3s ease;
             z-index: 1000;
+            text-align: center;
+            font-weight: 500;
         }
         
         .notification.show {
-            transform: translateX(0);
+            transform: translateY(0);
             opacity: 1;
         }
         
@@ -298,23 +321,186 @@
             color: #ff5722;
         }
         
-        @media (max-width: 600px) {
+        .share-container {
+            display: flex;
+            margin-top: 12px;
+            gap: 8px;
+            flex-direction: column;
+        }
+        
+        .share-btn {
+            background: #7e57c2;
+            flex: 1;
+            font-size: 14px;
+            min-height: 45px;
+        }
+        
+        .mobile-optimized {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .mobile-button-row {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        .mobile-button-row button {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        #my-id {
+            background: #f5f5f5;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+            flex: 1;
+        }
+        
+        /* Мобильная навигация */
+        @media (max-width: 480px) {
             body {
-                padding: 15px;
+                padding: 12px 10px;
+            }
+            
+            .container {
+                gap: 12px;
             }
             
             .card {
                 padding: 15px;
+                border-radius: 14px;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+                margin: 8px 0;
+            }
+            
+            input, button, select {
+                padding: 12px 14px;
+                font-size: 15px;
+                min-height: 45px;
+            }
+            
+            #chat-box {
+                height: 30vh;
+                min-height: 180px;
+                padding: 10px;
+            }
+            
+            .message {
+                padding: 8px 12px;
+                font-size: 14px;
             }
             
             .flex {
                 flex-direction: column;
                 gap: 8px;
+                align-items: stretch;
             }
             
-            button {
-                width: 100%;
+            .mobile-button-row {
+                flex-direction: column;
             }
+            
+            .share-container {
+                gap: 6px;
+            }
+            
+            .share-btn {
+                min-height: 40px;
+                font-size: 13px;
+            }
+            
+            #connection-status, #call-status {
+                font-size: 13px;
+                padding: 10px;
+            }
+            
+            .talk-indicator {
+                padding: 8px;
+                margin: 10px 0;
+            }
+            
+            .indicator-text {
+                font-size: 13px;
+            }
+        }
+        
+        /* Портретная ориентация */
+        @media (max-height: 600px) and (orientation: portrait) {
+            #chat-box {
+                height: 25vh;
+                min-height: 150px;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 12px;
+            }
+        }
+        
+        /* Ландшафтная ориентация */
+        @media (orientation: landscape) and (max-height: 500px) {
+            #chat-box {
+                height: 45vh;
+                min-height: 120px;
+            }
+            
+            .container {
+                gap: 10px;
+            }
+        }
+        
+        /* Поддержка iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
+            }
+            
+            #chat-box {
+                max-height: 40vh;
+            }
+        }
+        
+        /* Улучшение для touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            button:hover {
+                transform: none;
+            }
+            
+            button:active {
+                transform: scale(0.96);
+            }
+            
+            input, select {
+                font-size: 16px; /* Предотвращает масштабирование в iOS */
+            }
+        }
+        
+        /* Анимация загрузки */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -326,21 +512,26 @@
             <div class="status-container">
                 <div id="connection-status" class="disconnected">❌ Не подключено</div>
                 <div class="tooltip">ℹ️
-                    <span class="tooltiptext">Для подключения обменивайтесь ID с другом</span>
+                    <span class="tooltiptext">Для подключения обменивайтесь ID с другом или отправьте ссылку-приглашение</span>
                 </div>
             </div>
             <div class="flex">
                 <b>Твой ID:</b> 
-                <span id="my-id" style="background:#eee; padding:8px 12px; border-radius:5px; font-family: monospace;">...</span>
+                <span id="my-id" style="background:#f5f5f5; padding:10px; border-radius:8px; font-family: monospace; word-break: break-all;">...</span>
                 <button id="copy-id-button" onclick="copyMyId()">📋</button>
+            </div>
+            <div class="share-container">
+                <button class="share-btn" onclick="shareLink()">📤 Отправить приглашение</button>
+                <button class="share-btn" onclick="copyInviteLink()">📋 Копировать ссылку</button>
             </div>
         </div>
 
         <div class="card">
             <div class="flex">
-                <input type="text" id="friend-id" placeholder="Введите ID друга">
+                <input type="text" id="friend-id" placeholder="Введите ID друга" inputmode="text">
                 <button onclick="connectToFriend()">Подключиться</button>
             </div>
+            <p style="text-align: center; margin: 10px 0; font-size: 14px; color: #666;">Или перейдите по полученной ссылке-приглашению</p>
         </div>
         
         <!-- Обычный звонок с режимом рации -->
@@ -353,9 +544,9 @@
                 <div class="indicator-text">ИДЕТ ПЕРЕДАЧА...</div>
             </div>
             
-            <div class="flex">
-                <button id="call-button" onclick="startAudioCall()" class="secondary" disabled>📞 Начать звонок</button>
-                <button id="talk-button" class="walkie" onmousedown="startTalking()" onmouseup="stopTalking()" ontouchstart="startTalking()" touchend="stopTalking()" disabled>🎤 Говорить</button>
+            <div class="mobile-button-row">
+                <button id="call-button" onclick="startAudioCall()" class="secondary" disabled>📞 Звонок</button>
+                <button id="talk-button" class="walkie" ontouchstart="startTalking()" ontouchend="stopTalking()" disabled>🎤 Говорить</button>
                 <button id="end-call-button" onclick="endAudioCall()" class="danger" disabled>📞 Завершить</button>
             </div>
             
@@ -377,8 +568,10 @@
         <div class="card">
             <div id="chat-box"></div>
             <div class="flex">
-                <input type="text" id="message-input" placeholder="Введите сообщение..." onkeypress="if(event.key=='Enter')sendMessage()" disabled>
-                <button onclick="sendMessage()" class="secondary" id="send-button" disabled>Отправить</button>
+                <input type="text" id="message-input" placeholder="Введите сообщение..." 
+                       onkeypress="if(event.key=='Enter')sendMessage()" disabled 
+                       inputmode="text" autocapitalize="sentences">
+                <button onclick="sendMessage()" class="secondary" id="send-button" disabled>➤</button>
             </div>
         </div>
     </div>
@@ -405,7 +598,6 @@
         let isCalling = false;
         let isTalking = false;
         let selectedWalkieKey = ' ';
-        let audioTrack = null;
 
         // Генерация ID
         function generateId() {
@@ -426,87 +618,117 @@
             }, 3000);
         }
 
+        // Вибрация для мобильных
+        function vibrate() {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+            }
+        }
+
         // Запуск чата
         function startChat() {
+            // Проверяем, есть ли ID в URL (при переходе по пригласительной ссылке)
+            const urlParams = new URLSearchParams(window.location.search);
+            const inviteId = urlParams.get('invite');
+            
+            if (inviteId) {
+                document.getElementById('friend-id').value = inviteId;
+                setTimeout(() => {
+                    connectToFriend();
+                    showNotification('Найдено приглашение! Подключаемся...');
+                }, 1000);
+            }
+            
             myPeerId = generateId();
             document.getElementById('my-id').textContent = myPeerId;
             
-            peer = new Peer(myPeerId, { config: config });
+            // Инициализируем Peer с обработкой ошибок
+            try {
+                peer = new Peer(myPeerId, { 
+                    config: config,
+                    debug: 0 // Уменьшаем логи для мобильных
+                });
 
-            peer.on('open', () => {
-                addSystemMessage('✅ Чат готов к использованию!');
-                document.getElementById('copy-id-button').disabled = false;
-                
-                // Настройка обработчика клавиш для режима рации
-                document.getElementById('walkie-key').addEventListener('change', function() {
-                    selectedWalkieKey = this.value;
-                    addSystemMessage(`Клавиша для разговора изменена на: ${this.value}`);
+                peer.on('open', () => {
+                    addSystemMessage('✅ Чат готов к использованию!');
+                    document.getElementById('copy-id-button').disabled = false;
+                    vibrate();
+                    
+                    // Настройка обработчика клавиш для режима рации
+                    document.getElementById('walkie-key').addEventListener('change', function() {
+                        selectedWalkieKey = this.value;
+                        addSystemMessage(`Клавиша для разговора изменена на: ${this.value}`);
+                    });
+                    
+                    // Обработка нажатия клавиш для разговора
+                    document.addEventListener('keydown', handleKeyDown);
+                    document.addEventListener('keyup', handleKeyUp);
                 });
                 
-                // Обработка нажатия клавиш для разговора
-                document.addEventListener('keydown', handleKeyDown);
-                document.addEventListener('keyup', handleKeyUp);
-            });
-            
-            peer.on('connection', (conn) => {
-                if (activeConnection && activeConnection.peer !== conn.peer) {
-                    conn.on('open', () => {
-                        conn.send({ type: 'system', text: 'У меня уже есть активное соединение' });
-                        conn.close();
-                    });
-                    return;
-                }
-                
-                if (activeConnection) {
-                    activeConnection.close();
-                }
-                
-                activeConnection = conn;
-                setupConnection(conn);
-                updateConnectionStatus(true);
-                document.getElementById('call-button').disabled = false;
-                document.getElementById('message-input').disabled = false;
-                document.getElementById('send-button').disabled = false;
-                
-                addSystemMessage('✅ ' + conn.peer + ' подключился!');
-            });
-            
-            peer.on('call', (call) => {
-                // Обычный звонок
-                if (isCalling || isAudioCallActive) {
-                    return;
-                }
-                
-                if (confirm('Входящий звонок. Принять?')) {
-                    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-                        .then((stream) => {
-                            localStream = stream;
-                            audioTrack = stream.getAudioTracks()[0];
-                            // Изначально выключаем микрофон
-                            audioTrack.enabled = false;
-                            
-                            call.answer(stream);
-                            activeCall = call;
-                            setupCall(call);
-                            updateCallStatus('in-call', 'Звонок: Активен (режим рации)');
-                            updateAudioStatus(false); // Микрофон выключен
-                            isAudioCallActive = true;
-                            document.getElementById('talk-button').disabled = false;
-                            document.getElementById('end-call-button').disabled = false;
-                            addSystemMessage('📞 Звонок начат (режим рации)');
-                        })
-                        .catch((err) => {
-                            console.error('Ошибка микрофона:', err);
-                            addSystemMessage('❌ Не удалось получить доступ к микрофону');
-                            updateCallStatus('call-ended', 'Ошибка микрофона');
+                peer.on('connection', (conn) => {
+                    if (activeConnection && activeConnection.peer !== conn.peer) {
+                        conn.on('open', () => {
+                            conn.send({ type: 'system', text: 'У меня уже есть активное соединение' });
+                            conn.close();
                         });
-                }
-            });
-            
-            peer.on('error', (err) => {
-                console.error('Ошибка Peer:', err);
-                addSystemMessage('❌ Ошибка соединения: ' + err.type);
-            });
+                        return;
+                    }
+                    
+                    if (activeConnection) {
+                        activeConnection.close();
+                    }
+                    
+                    activeConnection = conn;
+                    setupConnection(conn);
+                    updateConnectionStatus(true);
+                    document.getElementById('call-button').disabled = false;
+                    document.getElementById('message-input').disabled = false;
+                    document.getElementById('send-button').disabled = false;
+                    
+                    addSystemMessage('✅ ' + conn.peer + ' подключился!');
+                    vibrate();
+                });
+                
+                peer.on('call', (call) => {
+                    // Обычный звонок
+                    if (isCalling || isAudioCallActive) {
+                        return;
+                    }
+                    
+                    // Вибрация для входящего звонка
+                    vibrate();
+                    
+                    if (confirm('Входящий звонок. Принять?')) {
+                        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+                            .then((stream) => {
+                                localStream = stream;
+                                call.answer(stream);
+                                activeCall = call;
+                                setupCall(call);
+                                updateCallStatus('in-call', 'Звонок: Активен');
+                                updateAudioStatus(true);
+                                isAudioCallActive = true;
+                                document.getElementById('talk-button').disabled = false;
+                                document.getElementById('end-call-button').disabled = false;
+                                addSystemMessage('📞 Звонок начат (режим рации)');
+                                vibrate();
+                            })
+                            .catch((err) => {
+                                console.error('Ошибка микрофона:', err);
+                                addSystemMessage('❌ Не удалось получить доступ к микрофону');
+                                updateCallStatus('call-ended', 'Ошибка микрофона');
+                            });
+                    }
+                });
+                
+                peer.on('error', (err) => {
+                    console.error('Ошибка Peer:', err);
+                    addSystemMessage('❌ Ошибка соединения: ' + err.type);
+                });
+            } catch (error) {
+                console.error('Ошибка инициализации:', error);
+                addSystemMessage('❌ Ошибка загрузки чата');
+            }
         }
 
         // Обработка нажатия клавиш для разговора
@@ -524,14 +746,11 @@
             }
         }
 
-        // Начать говорить (включить микрофон)
+        // Начать говорить (режим рации в звонке)
         function startTalking() {
-            if (!isAudioCallActive || isTalking || !audioTrack) return;
+            if (!isAudioCallActive || isTalking) return;
             
             isTalking = true;
-            // Включаем микрофон
-            audioTrack.enabled = true;
-            updateAudioStatus(true);
             updateTalkIndicator(true);
             document.getElementById('talk-button').classList.add('walkie-active');
             
@@ -541,16 +760,14 @@
             }
             
             addSystemMessage('🎤 Передача...');
+            vibrate();
         }
 
-        // Закончить говорить (выключить микрофон)
+        // Закончить говорить
         function stopTalking() {
-            if (!isTalking || !audioTrack) return;
+            if (!isTalking) return;
             
             isTalking = false;
-            // Выключаем микрофон
-            audioTrack.enabled = false;
-            updateAudioStatus(false);
             updateTalkIndicator(false);
             document.getElementById('talk-button').classList.remove('walkie-active');
             
@@ -572,16 +789,12 @@
             }
         }
 
-        // Обновить статус микрофона
-        function updateAudioStatus(isActive) {
-            document.getElementById('audio-status').textContent = `Микрофон: ${isActive ? '🟢 Вкл' : '🔴 Выкл'}`;
-        }
-
         // Настройка соединения
         function setupConnection(conn) {
             conn.on('data', (data) => {
                 if (data.type === 'message') {
                     addMessage(data.text, false);
+                    vibrate(); // Вибрация при новом сообщении
                 } else if (data.type === 'call-request') {
                     handleIncomingCallRequest();
                 } else if (data.type === 'system') {
@@ -591,8 +804,7 @@
                     updateTalkIndicator(data.status);
                     if (data.status) {
                         addSystemMessage('🔊 ' + conn.peer + ' говорит...');
-                    } else {
-                        addSystemMessage('🔇 ' + conn.peer + ' закончил говорить');
+                        vibrate();
                     }
                 }
             });
@@ -606,6 +818,7 @@
                 document.getElementById('send-button').disabled = true;
                 addSystemMessage('❌ Соединение разорвано');
                 if (isAudioCallActive) endAudioCall();
+                vibrate();
             });
             
             conn.on('error', (err) => {
@@ -637,6 +850,7 @@
                 document.getElementById('send-button').disabled = false;
                 addSystemMessage('✅ Подключено к ' + friendId);
                 showNotification('Подключение установлено!');
+                vibrate();
             });
             
             conn.on('error', (err) => {
@@ -666,11 +880,7 @@
             navigator.mediaDevices.getUserMedia({ audio: true, video: false })
                 .then((stream) => {
                     localStream = stream;
-                    audioTrack = stream.getAudioTracks()[0];
-                    // Изначально выключаем микрофон
-                    audioTrack.enabled = false;
-                    
-                    updateAudioStatus(false); // Микрофон выключен
+                    updateAudioStatus(true);
                     const call = peer.call(activeConnection.peer, stream);
                     activeCall = call;
                     setupCall(call);
@@ -688,6 +898,7 @@
         function handleIncomingCallRequest() {
             if (!isAudioCallActive) {
                 showNotification('Входящий звонок');
+                vibrate();
             }
         }
         
@@ -700,6 +911,7 @@
                 updateCallStatus('in-call', 'Звонок: Активен (режим рации)');
                 showNotification('Звонок начат! Нажмите кнопку "Говорить" или клавишу для разговора');
                 addSystemMessage('📞 Звонок начат. Используйте кнопку "Говорить" для передачи');
+                vibrate();
             });
             
             call.on('close', () => {
@@ -715,10 +927,6 @@
         }
         
         function endAudioCall() {
-            if (isTalking) {
-                stopTalking();
-            }
-            
             if (activeCall) {
                 activeCall.close();
                 activeCall = null;
@@ -726,7 +934,6 @@
             if (localStream) {
                 localStream.getTracks().forEach(track => track.stop());
                 localStream = null;
-                audioTrack = null;
             }
             isAudioCallActive = false;
             isTalking = false;
@@ -737,6 +944,10 @@
             document.getElementById('talk-button').classList.remove('walkie-active');
             document.getElementById('remote-audio').srcObject = null;
             updateCallStatus('call-ended', 'Звонок: Завершен');
+        }
+        
+        function updateAudioStatus(isActive) {
+            document.getElementById('audio-status').textContent = `Микрофон: ${isActive ? '🟢 Вкл' : '🔴 Выкл'}`;
         }
         
         function updateCallStatus(status, message) {
@@ -786,10 +997,48 @@
         function copyMyId() {
             navigator.clipboard.writeText(myPeerId).then(() => {
                 showNotification('ID скопирован в буфер обмена!');
+                vibrate();
             }).catch(() => {
-                prompt('Не удалось скопировать. Скопируйте ID вручную:', myPeerId);
+                prompt('Скопируйте ID вручную:', myPeerId);
             });
         }
+        
+        // Функции для отправки приглашений
+        function shareLink() {
+            const inviteUrl = generateInviteLink();
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Приглашение в секретный чат',
+                    text: 'Присоединяйся ко мне в безопасном чате!',
+                    url: inviteUrl
+                })
+                .then(() => console.log('Успешный шаринг'))
+                .catch((error) => {
+                    console.log('Ошибка шаринга, используем запасной вариант', error);
+                    copyInviteLink();
+                });
+            } else {
+                copyInviteLink();
+            }
+        }
+        
+        function copyInviteLink() {
+            const inviteUrl = generateInviteLink();
+            navigator.clipboard.writeText(inviteUrl).then(() => {
+                showNotification('Ссылка скопирована! Отправьте её другу');
+                vibrate();
+            }).catch(() => {
+                prompt('Скопируйте ссылку для приглашения:', inviteUrl);
+            });
+        }
+        
+        function generateInviteLink() {
+            return window.location.origin + window.location.pathname + '?invite=' + myPeerId;
+        }
+
+        // Предотвращение масштабирования при фокусе на iOS
+        document.addEventListener('touchstart', function() {}, {passive: true});
 
         // Подтверждение при закрытии страницы
         window.addEventListener('beforeunload', (e) => {
@@ -801,7 +1050,14 @@
         });
 
         // Запуск при загрузке
-        window.onload = startChat;
+        window.addEventListener('DOMContentLoaded', startChat);
+        
+        // Обработка изменения ориентации
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+            }, 300);
+        });
     </script>
 </body>
 </html>
