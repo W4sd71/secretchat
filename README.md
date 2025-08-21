@@ -1,12 +1,13 @@
+[lad messenger wasche online.html](https://github.com/user-attachments/files/21922647/lad.messenger.wasche.online.html)
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1a2a6c">
+    <meta name="theme-color" content="#6e8efb">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <title>🔒 Секретный Чат с Режимом Рации</title>
+    <title>🔒 Секретный Чат</title>
     <script src="https://unpkg.com/peerjs@1.5.0/dist/peerjs.min.js"></script>
     <style>
         * {
@@ -20,7 +21,7 @@
             max-width: 100%;
             margin: 0 auto;
             padding: 15px;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: #333;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
@@ -51,9 +52,9 @@
         }
         
         #chat-box {
-            height: 35vh;
-            min-height: 200px;
-            max-height: 300px;
+            height: 40vh;
+            min-height: 250px;
+            max-height: 400px;
             overflow-y: auto;
             border: 1px solid #e0e0e0;
             padding: 12px;
@@ -104,7 +105,7 @@
             color: #666;
         }
         
-        input, button, select {
+        input, button {
             padding: 14px 16px;
             margin: 4px 0;
             border: 1px solid #ddd;
@@ -113,13 +114,13 @@
             min-height: 50px;
         }
         
-        input, select {
+        input {
             width: 100%;
             background: #f9f9f9;
             -webkit-appearance: none;
         }
         
-        input:focus, select:focus {
+        input:focus {
             outline: none;
             border-color: #6e8efb;
             box-shadow: 0 0 0 2px rgba(110, 142, 251, 0.2);
@@ -152,15 +153,6 @@
             background: #f44336;
         }
         
-        button.walkie {
-            background: #ff9800;
-        }
-        
-        button.walkie-active {
-            background: #ff5722;
-            animation: pulse 0.5s infinite;
-        }
-        
         button:disabled {
             background: #ccc;
             cursor: not-allowed;
@@ -175,7 +167,7 @@
             flex-wrap: wrap;
         }
         
-        #connection-status, #call-status, #walkie-status {
+        #connection-status, #call-status {
             padding: 12px;
             border-radius: 10px;
             text-align: center;
@@ -207,18 +199,6 @@
         .call-ended {
             background: #fff3e0;
             color: #ef6c00;
-        }
-        
-        .walkie-active {
-            background: #ff9800;
-            color: white;
-            animation: pulse 1s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-            100% { opacity: 1; transform: scale(1); }
         }
         
         .status-container {
@@ -278,47 +258,6 @@
         .notification.show {
             transform: translateY(0);
             opacity: 1;
-        }
-        
-        .key-button {
-            display: inline-block;
-            padding: 5px 10px;
-            background: #eee;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            font-family: monospace;
-            font-weight: bold;
-        }
-        
-        .talk-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
-            padding: 10px;
-            background: #fff3e0;
-            border-radius: 8px;
-            border: 2px solid #ff9800;
-        }
-        
-        .indicator-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #ff5722;
-            animation: talkPulse 1s infinite;
-        }
-        
-        @keyframes talkPulse {
-            0% { opacity: 0.3; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 0.3; transform: scale(0.8); }
-        }
-        
-        .indicator-text {
-            font-weight: bold;
-            color: #ff5722;
         }
         
         .share-container {
@@ -382,15 +321,15 @@
                 margin: 8px 0;
             }
             
-            input, button, select {
+            input, button {
                 padding: 12px 14px;
                 font-size: 15px;
                 min-height: 45px;
             }
             
             #chat-box {
-                height: 30vh;
-                min-height: 180px;
+                height: 35vh;
+                min-height: 200px;
                 padding: 10px;
             }
             
@@ -422,22 +361,13 @@
                 font-size: 13px;
                 padding: 10px;
             }
-            
-            .talk-indicator {
-                padding: 8px;
-                margin: 10px 0;
-            }
-            
-            .indicator-text {
-                font-size: 13px;
-            }
         }
         
         /* Портретная ориентация */
         @media (max-height: 600px) and (orientation: portrait) {
             #chat-box {
-                height: 25vh;
-                min-height: 150px;
+                height: 30vh;
+                min-height: 180px;
             }
             
             h2 {
@@ -452,8 +382,8 @@
         /* Ландшафтная ориентация */
         @media (orientation: landscape) and (max-height: 500px) {
             #chat-box {
-                height: 45vh;
-                min-height: 120px;
+                height: 50vh;
+                min-height: 150px;
             }
             
             .container {
@@ -468,7 +398,7 @@
             }
             
             #chat-box {
-                max-height: 40vh;
+                max-height: 50vh;
             }
         }
         
@@ -482,7 +412,7 @@
                 transform: scale(0.96);
             }
             
-            input, select {
+            input {
                 font-size: 16px; /* Предотвращает масштабирование в iOS */
             }
         }
@@ -506,7 +436,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>🔒 Секретный Чат с Режимом Рации</h2>
+        <h2>🔒 Секретный Чат</h2>
         
         <div class="card">
             <div class="status-container">
@@ -534,37 +464,16 @@
             <p style="text-align: center; margin: 10px 0; font-size: 14px; color: #666;">Или перейдите по полученной ссылке-приглашению</p>
         </div>
         
-        <!-- Обычный звонок с режимом рации -->
         <div class="card">
-            <div id="call-status" class="call-ended">Звонок: Неактивен</div>
-            
-            <!-- Индикатор разговора -->
-            <div id="talk-indicator" class="talk-indicator" style="display: none;">
-                <div class="indicator-dot"></div>
-                <div class="indicator-text">ИДЕТ ПЕРЕДАЧА...</div>
-            </div>
-            
+            <div id="call-status" class="call-ended">Нет активного звонка</div>
             <div class="mobile-button-row">
-                <button id="call-button" onclick="startAudioCall()" class="secondary" disabled>📞 Звонок</button>
-                <button id="talk-button" class="walkie" ontouchstart="startTalking()" ontouchend="stopTalking()" disabled>🎤 Говорить</button>
+                <button id="call-button" onclick="startAudioCall()" class="secondary" disabled>🎧 Звонок</button>
                 <button id="end-call-button" onclick="endAudioCall()" class="danger" disabled>📞 Завершить</button>
             </div>
-            
-            <div style="margin-top: 15px;">
-                <label for="walkie-key">Клавиша для разговора:</label>
-                <select id="walkie-key">
-                    <option value=" ">Пробел</option>
-                    <option value="Control">Ctrl</option>
-                    <option value="Alt">Alt</option>
-                    <option value="Shift">Shift</option>
-                    <option value="`">Клавиша ` (Ё)</option>
-                </select>
-            </div>
-            
             <div id="audio-status">Микрофон: 🔴 Выкл</div>
             <audio id="remote-audio" autoplay></audio>
         </div>
-        
+
         <div class="card">
             <div id="chat-box"></div>
             <div class="flex">
@@ -596,8 +505,6 @@
         let localStream = null;
         let isAudioCallActive = false;
         let isCalling = false;
-        let isTalking = false;
-        let selectedWalkieKey = ' ';
 
         // Генерация ID
         function generateId() {
@@ -627,7 +534,7 @@
 
         // Запуск чата
         function startChat() {
-            // Проверяем, есть ли ID в URL (при переходе по пригласительной ссылке)
+            // Проверяем, есть ли ID в URL
             const urlParams = new URLSearchParams(window.location.search);
             const inviteId = urlParams.get('invite');
             
@@ -653,16 +560,6 @@
                     addSystemMessage('✅ Чат готов к использованию!');
                     document.getElementById('copy-id-button').disabled = false;
                     vibrate();
-                    
-                    // Настройка обработчика клавиш для режима рации
-                    document.getElementById('walkie-key').addEventListener('change', function() {
-                        selectedWalkieKey = this.value;
-                        addSystemMessage(`Клавиша для разговора изменена на: ${this.value}`);
-                    });
-                    
-                    // Обработка нажатия клавиш для разговора
-                    document.addEventListener('keydown', handleKeyDown);
-                    document.addEventListener('keyup', handleKeyUp);
                 });
                 
                 peer.on('connection', (conn) => {
@@ -690,7 +587,6 @@
                 });
                 
                 peer.on('call', (call) => {
-                    // Обычный звонок
                     if (isCalling || isAudioCallActive) {
                         return;
                     }
@@ -705,12 +601,10 @@
                                 call.answer(stream);
                                 activeCall = call;
                                 setupCall(call);
-                                updateCallStatus('in-call', 'Звонок: Активен');
+                                updateCallStatus('in-call', 'Активный звонок');
                                 updateAudioStatus(true);
                                 isAudioCallActive = true;
-                                document.getElementById('talk-button').disabled = false;
                                 document.getElementById('end-call-button').disabled = false;
-                                addSystemMessage('📞 Звонок начат (режим рации)');
                                 vibrate();
                             })
                             .catch((err) => {
@@ -731,63 +625,8 @@
             }
         }
 
-        // Обработка нажатия клавиш для разговора
-        function handleKeyDown(event) {
-            if (event.key === selectedWalkieKey && isAudioCallActive && !isTalking) {
-                event.preventDefault();
-                startTalking();
-            }
-        }
-
-        function handleKeyUp(event) {
-            if (event.key === selectedWalkieKey && isTalking) {
-                event.preventDefault();
-                stopTalking();
-            }
-        }
-
-        // Начать говорить (режим рации в звонке)
-        function startTalking() {
-            if (!isAudioCallActive || isTalking) return;
-            
-            isTalking = true;
-            updateTalkIndicator(true);
-            document.getElementById('talk-button').classList.add('walkie-active');
-            
-            // Отправляем сигнал другому пользователю, что мы начали говорить
-            if (activeConnection) {
-                activeConnection.send({ type: 'talking', status: true });
-            }
-            
-            addSystemMessage('🎤 Передача...');
-            vibrate();
-        }
-
-        // Закончить говорить
-        function stopTalking() {
-            if (!isTalking) return;
-            
-            isTalking = false;
-            updateTalkIndicator(false);
-            document.getElementById('talk-button').classList.remove('walkie-active');
-            
-            // Отправляем сигнал другому пользователю, что мы закончили говорить
-            if (activeConnection) {
-                activeConnection.send({ type: 'talking', status: false });
-            }
-            
-            addSystemMessage('🔇 Пауза');
-        }
-
-        // Обновить индикатор разговора
-        function updateTalkIndicator(talking) {
-            const indicator = document.getElementById('talk-indicator');
-            if (talking) {
-                indicator.style.display = 'flex';
-            } else {
-                indicator.style.display = 'none';
-            }
-        }
+        // Остальные функции остаются без изменений (setupConnection, connectToFriend, startAudioCall, etc.)
+        // ... [остальной JavaScript код из предыдущего примера] ...
 
         // Настройка соединения
         function setupConnection(conn) {
@@ -799,13 +638,6 @@
                     handleIncomingCallRequest();
                 } else if (data.type === 'system') {
                     addSystemMessage(data.text);
-                } else if (data.type === 'talking') {
-                    // Получаем статус разговора от другого пользователя
-                    updateTalkIndicator(data.status);
-                    if (data.status) {
-                        addSystemMessage('🔊 ' + conn.peer + ' говорит...');
-                        vibrate();
-                    }
                 }
             });
             
@@ -813,7 +645,6 @@
                 activeConnection = null;
                 updateConnectionStatus(false);
                 document.getElementById('call-button').disabled = true;
-                document.getElementById('talk-button').disabled = true;
                 document.getElementById('message-input').disabled = true;
                 document.getElementById('send-button').disabled = true;
                 addSystemMessage('❌ Соединение разорвано');
@@ -862,7 +693,7 @@
             });
         }
 
-        // Начать аудиозвонок с режимом рации
+        // Аудиозвонок
         function startAudioCall() {
             if (!activeConnection) {
                 showNotification('Сначала подключитесь к другу!', false);
@@ -875,7 +706,7 @@
             
             isCalling = true;
             activeConnection.send({ type: 'call-request' });
-            updateCallStatus('calling', 'Звонок: Вызов...');
+            updateCallStatus('calling', 'Звонок...');
             
             navigator.mediaDevices.getUserMedia({ audio: true, video: false })
                 .then((stream) => {
@@ -906,11 +737,9 @@
             call.on('stream', (remoteStream) => {
                 document.getElementById('remote-audio').srcObject = remoteStream;
                 isAudioCallActive = true;
-                document.getElementById('talk-button').disabled = false;
                 document.getElementById('end-call-button').disabled = false;
-                updateCallStatus('in-call', 'Звонок: Активен (режим рации)');
-                showNotification('Звонок начат! Нажмите кнопку "Говорить" или клавишу для разговора');
-                addSystemMessage('📞 Звонок начат. Используйте кнопку "Говорить" для передачи');
+                updateCallStatus('in-call', 'Активный звонок');
+                showNotification('Звонок начат');
                 vibrate();
             });
             
@@ -936,14 +765,10 @@
                 localStream = null;
             }
             isAudioCallActive = false;
-            isTalking = false;
-            document.getElementById('talk-button').disabled = true;
             document.getElementById('end-call-button').disabled = true;
             updateAudioStatus(false);
-            updateTalkIndicator(false);
-            document.getElementById('talk-button').classList.remove('walkie-active');
             document.getElementById('remote-audio').srcObject = null;
-            updateCallStatus('call-ended', 'Звонок: Завершен');
+            updateCallStatus('call-ended', 'Звонок завершен');
         }
         
         function updateAudioStatus(isActive) {
